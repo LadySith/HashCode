@@ -17,8 +17,8 @@ for line in f:
     x.append(list(line))
 for i in range(0,r):
     x[i].remove("\n")
-    tcount = tcount + x[i].count("T")
-    mcount = mcount + x[i].count("M")
+    tcount = tcount + x[i].count('T')
+    mcount = mcount + x[i].count('M')
 print(z)
 
 x = np.array(x)
@@ -29,16 +29,16 @@ print('Mushrooms: ' + str(mcount))
 print('Min no of each: ' + str(n))
 print('Max size of slice: ' + str(m))
 
-mode = ''
+mode = ""
 perslice = 0
 
 if (tcount < mcount):
-    mode = "T"
+    mode = 'T'
 else:
-    mode = "M"
+    mode = 'M'
 
 def isSlice(array):
-    if ((np.count_nonzero(array == mode) == n)):
+    if (np.count_nonzero(array == mode) == n):
         return 1
     else:
         return 0
@@ -46,11 +46,10 @@ def isSlice(array):
 slices = []
 
 for i in range(0,r):
-    for j in range(0,c-m+1):
-        a = x[i, j:(j+m)]
+    for j in range(0,c-(2*n)+1):
+        a = x[i, j:(j+(2*n))]
         if (isSlice(a) == 1):
-            slices.append([i, j, i, j+m])
-            j = j+m+1
+            slices.append([i, j, i, (j+(2*n)-1)])
 
 print('No of slices: ' + str(len(slices)))
 print(slices)
